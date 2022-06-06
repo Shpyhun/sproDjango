@@ -20,9 +20,9 @@ from .views import hellodjango, helloname, data, day, month, year
 
 urlpatterns = [
     path('', hellodjango),
-    path('<str:name>/', helloname),
     path('data/', data),
     path('data/day', day),
     path('data/month', month),
     path('data/year', year),
+    path('<str:name>/', helloname),
 ]
