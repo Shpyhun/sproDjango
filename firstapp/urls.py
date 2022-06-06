@@ -16,13 +16,13 @@ Including another URLconf
 
 from django.urls import path
 
-from .views import hellodjango, helloname, data, day, month, year
+from .views import hellodjango, helloname, data #, day, month, year
 
 urlpatterns = [
     path('', hellodjango),
     path('data/', data),
-    path('data/day', day),
-    path('data/month', month),
-    path('data/year', year),
+    path('data/day', data),
+    path('data/month', data),
+    path('data/year', data),
     path('<str:name>/', helloname),
 ]
