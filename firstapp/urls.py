@@ -1,28 +1,10 @@
-"""test_site URL Configuration
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/4.0/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
-
 from django.urls import path
 
-from .views import hellodjango, helloname, data #, day, month, year
+from firstapp import views
 
 urlpatterns = [
-    path('', hellodjango),
-    path('data/', data),
-    path('data/day', data),
-    path('data/month', data),
-    path('data/year', data),
-    path('<str:name>/', helloname),
+    path('', views.hellodjango),
+    path('date/', views.fulldate),
+    path('date/<str:index>/', views.date),
+    path('<str:name>/', views.helloname),
 ]
