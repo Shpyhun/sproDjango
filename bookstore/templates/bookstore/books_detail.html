@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BOOK INFO</title>
+</head>
+<body>
+<h1>Contents of the book</h1>
+<div>
+    <h2>{{title}}</h2>
+    <p>{{description}}</p>
+    <p1>{{released_year}}</p1><br><br>
+    <p2>{{paperback}}</p2><br><br>
+    <button><a href="{% url 'author' author_id %}">Book author</a></button>    <button><a href="{% url 'books_list' %}">Book list</a></button>
+</div>
+
+</body>
+</html>

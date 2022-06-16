@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AUTHOR</title>
+</head>
+<body>
+<h1>Book author</h1>
+<div>
+
+    <p>Author: {{first_name}} {{last_name}}</p>
+    <h2>{{title}}</h2>
+    <p2>Age: {{age}}</p2><br><br>
+
+    <button><a href="{% url 'books_list' %}">Список книг</a></button><br><br>
+    <button><a href="{% url 'books_list' %}">Book list</a></button><br><br>
+    <button><a onclick="history.back();return false;">goBack</a></button>
+</div>
+
+</body>
+</html>
