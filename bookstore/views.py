@@ -129,6 +129,13 @@ def author_info(request, index_auth):
     return render(request, 'bookstore/author.html', context=author)
 
 
-def books_list_sorted(request):
-    return render(request, 'bookstore/books_list_sorted.html', context={'books': books})
+def books_list_sorted(request, author_id):
+    # new_books = [book for book in books if book['author_id'] == author_id]
+    new_books = []
+    for book in books:
+        if book['author_id'] == author_id:
+            new_books.append(book)
+
+    return render(request, 'bookstore/books_list_sorted.html', context={'books': new_books})
+
 

@@ -2,16 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>books list sorted</title>
 </head>
 <body>
-<h1>Books list</h1>
+    <h1>Books list</h1>
 {% for book in books %}
 <div>
     <h2>{{book.title | upper}}</h2>
     <p>{{book.description | slice:100}}</p>
-    <button><a href="{% url 'books_detail' book.author_id %}">Read more</a></button>
-</div>
 {% endfor %}
+    <button><a href="{% url 'books_list' %}">Books list</a></button><br><br>
+    <button><a onclick="history.back();return false;">goBack</a></button></div>
 </body>
 </html>

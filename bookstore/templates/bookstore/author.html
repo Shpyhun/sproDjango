@@ -10,10 +10,9 @@
 
     <p>Author: {{first_name}} {{last_name}}</p>
     <h2>{{title}}</h2>
-    <p2>Age: {{age}}</p2><br><br>
+    <p1>Age: {{age}}</p1><br><br>
 
-    <button><a href="{% url 'books_list' %}">Список книг</a></button><br><br>
-    <button><a href="{% url 'books_list' %}">Book list</a></button><br><br>
+    <button><a href="{% url 'sorted' id %}">Books list this author</a></button> <button><a href="{% url 'books_list' %}">Books list</a></button><br><br>
     <button><a onclick="history.back();return false;">goBack</a></button>
 </div>
 
