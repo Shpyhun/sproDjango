@@ -1,4 +1,4 @@
-from django.http import HttpResponseNotFound
+from django.http import HttpResponseNotFound, Http404
 from django.shortcuts import render
 
 # Create your views here.
@@ -121,21 +121,27 @@ def books_detail(request, index):
         book = books[int(index) - 1]
         return render(request, 'bookstore/books_detail.html', context=book)
     except IndexError:
-        return HttpResponseNotFound(f'non found {index}')
+        return HttpResponseNotFound(f'Page {index} not found')
 
 
 def author_info(request, index_auth):
-    author = authors[int(index_auth) - 1]
-    return render(request, 'bookstore/author.html', context=author)
+    try:
+        author = authors[int(index_auth) - 1]
+        return render(request, 'bookstore/author.html', context=author)
+    except IndexError:
+        return HttpResponseNotFound(f'Page {index_auth} not found')
 
 
-def books_list_sorted(request, author_id):
-    # new_books = [book for book in books if book['author_id'] == author_id]
-    new_books = []
-    for book in books:
-        if book['author_id'] == author_id:
-            new_books.append(book)
+def books_list_sorted(request, index_id):
+    try:
+        new_books = []
+        for book in books:
+            if book['author_id'] == index_id:
+                new_books.append(book)
+        return render(request, 'bookstore/books_list_sorted.html', context={'books': new_books})
+    except IndexError:
+        return HttpResponseNotFound(f'Page {index_id} not found')
 
-    return render(request, 'bookstore/books_list_sorted.html', context={'books': new_books})
 
-
+def page_not_found(request, exception):
+    return HttpResponseNotFound('<h1>Sorry. Page not found</h1>')
