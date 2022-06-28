@@ -4,12 +4,20 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+
+<form action="{% url 'books_list' %}" method="get">
+    <input type="text" name="qwerty">
+    <input type="submit" value="Search">
+</form>
+
 <body>
+
 <h1>Books list</h1>
 {% for book in books %}
 <div>
     <h2>{{book.title | upper}}</h2>
     <p>{{book.description | slice:100}}</p>
+    <p1>Date add: {{book.time_update|date:"d-m-Y"}}</p1><br><br>
     <button><a href="{% url 'books_detail' book.id %}">Read more</a></button>
 </div>
 {% endfor %}

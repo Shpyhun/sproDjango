@@ -7,12 +7,14 @@
 <body>
 <h1>Contents of the book</h1>
 <div>
-    <h2>{{title}}</h2>
-    <p>{{description}}</p>
-    <p1>{{released_year}}</p1><br><br>
-    <p2>{{paperback}}</p2><br><br>
-    <button><a href="{% url 'author' author_id %}">Books author</a></button> <button><a href="{% url 'books_list' %}">Books list</a></button>
+    <h2>{{book.title}}</h2>
+    <p>{{book.description}}</p>
+    <p1>Publication date: {{book.released_year}}</p1><br><br>
+    <p2>Print length: {{book.paperback}} pages</p2><br><br>
+    <p3>Date add: {{book.time_update|date:"d-m-Y"}}</p3><br><br>
+    <button><a href="{% url 'author' book.author_id %}">Books author</a></button> <button><a href="{% url 'books_list' %}">Books list</a></button>
 </div>
 
 </body>
 </html>
+

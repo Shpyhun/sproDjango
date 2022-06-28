@@ -8,9 +8,10 @@
     <h1>Books list</h1>
 {% for book in books %}
 <div>
-    <h2>{{book.title | upper}}</h2>
+    <h2>{{book.title}}</h2>
     <p>{{book.description | slice:100}}</p>
 {% endfor %}
+
     <button><a href="{% url 'books_list' %}">Books list</a></button><br><br>
     <button><a onclick="history.back();return false;">goBack</a></button></div>
 </body>

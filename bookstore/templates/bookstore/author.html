@@ -8,11 +8,11 @@
 <h1>Book author</h1>
 <div>
 
-    <p>Author: {{first_name}} {{last_name}}</p>
-    <h2>{{title}}</h2>
-    <p1>Age: {{age}}</p1><br><br>
+    <p>Author: {{author.first_name}} {{author.last_name}}</p>
+    <h2>{{book.title}}</h2>
+    <p1>Age: {{author.age}}</p1><br><br>
 
-    <button><a href="{% url 'sorted' id %}">Books list this author</a></button> <button><a href="{% url 'books_list' %}">Books list</a></button><br><br>
+    <button><a href="{% url 'sorted' author.id %}">Books list this author</a></button> <button><a href="{% url 'books_list' %}">Books list</a></button><br><br>
     <button><a onclick="history.back();return false;">goBack</a></button>
 </div>
 
