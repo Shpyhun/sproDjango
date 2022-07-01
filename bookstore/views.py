@@ -2,6 +2,7 @@ from django.http import HttpResponseNotFound, Http404
 from django.shortcuts import render, get_object_or_404, get_list_or_404
 
 # Create your views here.
+from bookstore.forms import BooksForm
 from bookstore.models import Books, Author
 
 
@@ -10,7 +11,12 @@ def books_list(request):
     if request.method == "GET" and 'qwerty' in request.GET:
         qwerty = request.GET['qwerty']
         books = books.filter(title__icontains=qwerty)
-    context = {'books': books}
+    if request.method == 'POST':
+        form = BooksForm(request.POST)
+        if form.is_valid():
+            form.save()
+            books = Books.objects.all().order_by('-id')
+    context = {'books': books, 'post_form': BooksForm}
     return render(request, 'bookstore/books_list.html', context=context)
 
 
@@ -30,6 +36,17 @@ def books_list_sorted(request, index):
     books = get_list_or_404(Books, author=index)
     context = {'books': books}
     return render(request, 'bookstore/books_list_sorted.html', context=context)
+
+
+def add_book(request):
+    books = Books.objects.all()
+    if request.method == 'POST':
+        form = BooksForm(request.POST)
+        if form.is_valid():
+            form.save()
+            books = Books.objects.all()
+    context = {'books': books, 'post_form': BooksForm}
+    return render(request, 'bookstore/add_book.html', context=context)
 
 
 def page_not_found(request, exception):

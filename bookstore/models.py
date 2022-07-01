@@ -5,7 +5,7 @@ books = [
     {
         'id': 1,
         'title': 'Django for APIs: Build web APIs with Python & Django',
-        'released_year': 'Publication date: 15 Jun. 2018',
+        'released_year': '15 Jun. 2018',
         'description': 'The author has done a job explaining how to create REST ful APIs using Django and the Django '
                        'REST framework – from scratch and of different complexity levels. This is not a basic '
                        'book that will teach you “What is Django”, instead this is for developers who want to write '
@@ -15,12 +15,12 @@ books = [
                        'most important concepts. The book is written for beginners but the author also points to '
                        'many useful resources if you want to get into more complicated models.',
         'author': 1,
-        'paperback': 'Print length: 190 pages',
+        'paperback': 190,
     },
     {
         'id': 2,
         'title': 'Two Scoops of Django 1.11: Best Practices for the Django Web Framework',
-        'released_year': 'Publication date: 30 Jun. 2017',
+        'released_year': '30 Jun. 2017',
         'description': 'If you have worked on a Django project before and want to properly learn the framework, '
                        'this is the best book. It is written keeping in mind both beginners and advanced level '
                        'professionals. It is your go-to reference guide for tips and valuable suggestions for best '
@@ -31,12 +31,12 @@ books = [
                        'experience clearly shows up with the wealth of information they have shared in the form of '
                        'tips, code samples, tricks, and techniques.',
         'author': 2,
-        'paperback': 'Paperback: 555 pages',
+        'paperback': 555,
     },
     {
         'id': 3,
         'title': 'Django for Professionals: Production websites with Python & Django',
-        'released_year': 'Publication date: 21 July 2019',
+        'released_year': '21 July 2019',
         'description': 'This is an extension of the Django for beginners’ book. While in the basic version, you would '
                        'build simple websites that are focused on the understanding of concepts, this book focuses on '
                        'more complex real-life applications and projects and is written keeping that in mind. The '
@@ -46,12 +46,12 @@ books = [
                        'do not know any others – Bootstrap, PostgreSQL, Docker, etc… He also chooses to build a '
                        'website that covers all the concepts that you will ever need to become a pro in Django.',
         'author': 1,
-        'paperback': 'Print length: 380 pages',
+        'paperback': 380,
     },
     {
         'id': 4,
         'title': 'Django 2 by Example',
-        'released_year': 'Publication date: 31 May 2018',
+        'released_year': '31 May 2018',
         'description': 'The book is good for beginners and intermediate level learners. If you have worked with '
                        'JavaScript, HTML, and Python, this book would be a great choice. It starts from building a '
                        'web application from scratch and covers even the most advanced topics in-depth, '
@@ -63,12 +63,12 @@ books = [
                        'the book, just for a heads-up – even otherwise, the author assumes you have no prior '
                        'knowledge of Django.',
         'author': 3,
-        'paperback': 'Print length: 526 pages',
+        'paperback': 526,
     },
     {
         'id': 5,
         'title': 'Django Unleashed',
-        'released_year': 'Publication date: 19 Nov. 2015',
+        'released_year': '19 Nov. 2015',
         'description': 'This is a good book for beginners as well as Django programmers with about 4-5 years who '
                        'would like to learn more. The book is a detailed guide and starts with scratch to build '
                        'applications in Django. It explains various ways of solving the same problem and then '
@@ -78,7 +78,7 @@ books = [
                        'Generic views, creating custom users and managers, security, performance, etc are explained '
                        'very nicely.',
         'author': 4,
-        'paperback': 'Print length: 840 pages',
+        'paperback': 840,
     },
 ]
 
@@ -114,7 +114,7 @@ class Books(models.Model):
     """Model representing a book"""
     title = models.CharField(max_length=100)
     released_year = models.CharField(max_length=20)
-    description = models.TextField(help_text="Enter a brief description of the book")
+    description = models.TextField()
     author = models.ForeignKey('Author', on_delete=models.SET_NULL, null=True)
     paperback = models.CharField(max_length=50)
     time_create = models.DateTimeField(auto_now_add=True)
@@ -142,4 +142,7 @@ class Author(models.Model):
         for author in authors:
             author = Author(first_name=author['first_name'], last_name=author['last_name'], age=author['age'])
             author.save()
+
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}"
 

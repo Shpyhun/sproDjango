@@ -11,7 +11,9 @@
 </form>
 
 <body>
-
+<div>
+    <br><button><a href="{% url 'add_book' %}">Add book</a></button>
+</div>
 <h1>Books list</h1>
 {% for book in books %}
 <div>
