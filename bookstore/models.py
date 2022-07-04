@@ -130,6 +130,10 @@ class Books(models.Model):
     def __str__(self):
         return f"{self.pk} {self.title}"
 
+    class Meta:
+        verbose_name = 'Book'
+        verbose_name_plural = 'Books'
+
 
 class Author(models.Model):
     """Model representing an author"""
@@ -145,4 +149,16 @@ class Author(models.Model):
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
+
+    class Meta:
+        verbose_name = 'Author'
+        verbose_name_plural = 'Authors'
+
+
+class Member(models.Model):
+    nickname = models.CharField(max_length=100)
+
+    def __str__(self):
+        return f"pk = {self.pk} nickname = {self.title}"
+
 

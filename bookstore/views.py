@@ -5,6 +5,10 @@ from django.shortcuts import render, get_object_or_404, get_list_or_404
 from bookstore.forms import BooksForm
 from bookstore.models import Books, Author
 
+menu = [{'title': "Про нас", 'url_name': 'books_list'},
+        {'title': "Добавить книгу", 'url_name': 'add_book'},
+
+]
 
 def books_list(request):
     books = Books.objects.all()
