@@ -1,5 +1,5 @@
 body {
-    background: #696969;
+    background: #708090;
 }
 
 .table-page {
@@ -9,6 +9,12 @@ body {
 	float: right;
 }
 .table-page tr {height: 100%;}
+
+.table-content {
+	width: 100%;
+	min-height: 100%;
+	height: 100%;
+}
 
 .clear {clear: both;}
 
@@ -33,6 +39,7 @@ ul.mainmenu li {
 	float: left;
 	margin: 18px 30px 0 20px;
 }
+
 ul.mainmenu li.logo {margin: 0; }
 ul.mainmenu li.last {float: right; }
 
@@ -55,23 +62,13 @@ aside {
     background: #708090;
     width: 20%;
     padding: 2.5%;
-    height: 100vh;
+    height: 120vh;
     color: #fff;
     border-right: 5px solid #4d4d4d;
 }
 
-aside img {
-    with: 80px;
-    float: left;
-}
 
-aside .logo {
-    font-size: 40px;
-    margin-left: 10px;
-    font-weight: bold;
-    position: relative;
-    top: -5px
-}
+
 
 aside h3 {
     margin-top: 50px;
@@ -102,21 +99,19 @@ main .futures {
 main .futures h1 {font-size: 50px}
 main .futures p {max-width: 400px; margin: 20px auto}
 
-#footer {
+
+.footer {
 	box-sizing: border-box;
 
-	background: #3F4137;
+	background: #3d3d3d;
 	padding: 5px;
 	color: #aaa;
-	font-size: 14px;
+	font-size: 18px;
 	font-family: Verdana, Geneva, Arial, Helvetica;
-	text-align: left;
+	text-align: center;
 	overflow: hidden;
 }
-#footer a {
-	text-decoration: underline;
-	color: #aaa;
-}
+
 
 form-input {
     width: 300px;
@@ -178,31 +173,4 @@ form-input {
 	box-shadow: none;
 }
 
-html, body {
-	font-family: 'Arial';
-	margin: 0;
-	padding: 0;
-	height: 100%;
-	width: 100%;
-	color: #444;
-}
 
-div.button a {
-    text-decoration:none;
-	background: #3F4137;
-	max-width: 200px;
-	margin: 0 auto;
-	padding: 5px 20px 5px 20px;
-	border-radius: 10px;
-	font-size: 20px;
-}
-
-.button a {
-    text-decoration:none;
-	background: #3F4137;
-	max-width: 200px;
-	margin: 0 auto;
-	padding: 5px 20px 5px 20px;
-	border-radius: 10px;
-	font-size: 20px;
-}

@@ -2,26 +2,47 @@ from django.http import HttpResponseNotFound, Http404
 from django.shortcuts import render, get_object_or_404, get_list_or_404
 
 # Create your views here.
+from django.views import View
+
 from bookstore.forms import BooksForm
 from bookstore.models import Books, Author
 
-menu = [{'title': "Про нас", 'url_name': 'books_list'},
-        {'title': "Добавить книгу", 'url_name': 'add_book'},
+menu = [{'title': "Book list", 'url_name': 'books_list'},
+        {'title': "Add book", 'url_name': 'add_book'},
 
 ]
 
-def books_list(request):
-    books = Books.objects.all()
-    if request.method == "GET" and 'qwerty' in request.GET:
-        qwerty = request.GET['qwerty']
-        books = books.filter(title__icontains=qwerty)
-    if request.method == 'POST':
+
+class BooksView(View):
+    def post(self, request):
         form = BooksForm(request.POST)
         if form.is_valid():
             form.save()
-            books = Books.objects.all().order_by('-id')
-    context = {'books': books, 'post_form': BooksForm}
-    return render(request, 'bookstore/books_list.html', context=context)
+        books = Books.objects.all().order_by('-id')
+        context = {'books': books, 'post_form': BooksForm}
+        return render(request, 'bookstore/books_list.html', context=context)
+
+    def get(self, request):
+        books = Books.objects.all().order_by('-id')
+        if request.method == "GET" and 'qwerty' in request.GET:
+            qwerty = request.GET['qwerty']
+            books = books.filter(title__icontains=qwerty)
+        context = {'books': books, 'post_form': BooksForm}
+        return render(request, 'bookstore/books_list.html', context=context)
+
+
+# def books_list(request):
+#     books = Books.objects.all()
+#     if request.method == "GET" and 'qwerty' in request.GET:
+#         qwerty = request.GET['qwerty']
+#         books = books.filter(title__icontains=qwerty)
+#     if request.method == 'POST':
+#         form = BooksForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             books = Books.objects.all().order_by('-id')
+#     context = {'books': books, 'post_form': BooksForm}
+#     return render(request, 'bookstore/books_list.html', context=context)
 
 
 def books_detail(request, index):
@@ -42,15 +63,32 @@ def books_list_sorted(request, index):
     return render(request, 'bookstore/books_list_sorted.html', context=context)
 
 
-def add_book(request):
-    books = Books.objects.all()
-    if request.method == 'POST':
+class AddBookView(View):
+    def post(self, request):
         form = BooksForm(request.POST)
         if form.is_valid():
             form.save()
-            books = Books.objects.all()
-    context = {'books': books, 'post_form': BooksForm}
-    return render(request, 'bookstore/add_book.html', context=context)
+            books = Books.objects.all().order_by('-id')
+        context = {'books': books, 'post_form': BooksForm}
+        return render(request, 'bookstore/add_book.html', context=context)
+
+    def get(self, request):
+        books = Books.objects.all().order_by('-id')
+        if request.method == "GET" and 'qwerty' in request.GET:
+            qwerty = request.GET['qwerty']
+            books = books.filter(title__icontains=qwerty)
+        context = {'books': books, 'post_form': BooksForm}
+        return render(request, 'bookstore/add_book.html', context=context)
+
+# def add_book(request):
+#     books = Books.objects.all()
+#     if request.method == 'POST':
+#         form = BooksForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             books = Books.objects.all()
+#     context = {'books': books, 'post_form': BooksForm}
+#     return render(request, 'bookstore/add_book.html', context=context)
 
 
 def page_not_found(request, exception):

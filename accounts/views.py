@@ -2,28 +2,43 @@
 from django.contrib.auth import login, logout
 from django.contrib.auth.views import LoginView
 from django.shortcuts import redirect
-from django.urls import reverse_lazy
-from django.views.generic import CreateView
+from django.urls import reverse_lazy, reverse
+from django.views import View
+from django.views.generic import CreateView, FormView
 
 from accounts.forms import RegisterUserForm, LoginUserForm
 
 
 class RegisterUser(CreateView):
     form_class = RegisterUserForm
-    template_name = 'accounts/register.html'
     success_url = reverse_lazy('login')
+    template_name = 'accounts/register.html'
 
     def form_valid(self, form):
         user = form.save()
         login(self.request, user)
-        return redirect('book_list')
+        return redirect('books_list')
 
 
 class LoginUser(LoginView):
     form_class = LoginUserForm
+    success_url = reverse_lazy('books_list')
     template_name = 'accounts/login.html'
 
 
-def logout_user(request):
-    logout(request)
-    return redirect('login')
+
+# class LoginUser(LoginView):
+#     form_class = LoginUserForm
+#     success_url = reverse_lazy('books_list')
+#     template_name = 'accounts/login.html'
+#
+    # def form_valid(self, form):
+    #     user = form.get_user()
+    #     login(self.request, user)
+    #     return redirect('books_list')
+
+
+class LogoutUser(View):
+    def get(self, request):
+        logout(request)
+        return redirect(reverse('books_list'))

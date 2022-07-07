@@ -1,13 +1,14 @@
 {% extends 'bookstore/base.html' %}
 
 {% block content %}
-<h1>{{title}}</h1>
+
+<h1>Register</h1>
 
 <form method="post">
     {% csrf_token %}
 
 {% for f in form %}
-<p><label class="form-label" for="{{ f.id_for_label}}">{{f.label}}: </label>{{ f }} </p>
+<p><label class="form-label">{{f.label}}: </label>{{ f }} </p>
 <div class="form-error">{{ f.errors }}</div>
 {% endfor %}
 
@@ -15,3 +16,4 @@
 </form>
 
 {% endblock %}
+

@@ -1,9 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>books list sorted</title>
-</head>
+{% extends 'bookstore/base.html' %}
+
+{% block content %}
+
 <body>
     <h1>Books list</h1>
 {% for book in books %}
@@ -15,4 +13,5 @@
     <button><a href="{% url 'books_list' %}">Books list</a></button><br><br>
     <button><a onclick="history.back();return false;">goBack</a></button></div>
 </body>
-</html>
+
+{% endblock %}

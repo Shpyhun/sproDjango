@@ -3,9 +3,6 @@
 {% block content %}
 
 <body>
-<div>
-    <br><button><a href="{% url 'add_book' %}">Add book</a></button>
-</div>
 <h1>Books list</h1>
 {% for book in books %}
 <div>
@@ -13,6 +10,7 @@
     <p>{{book.description | slice:100}}</p>
     <p1>Date add: {{book.time_update|date:"d-m-Y"}}</p1><br><br>
     <button><a href="{% url 'books_detail' book.id %}">Read more</a></button>
+    <hr>
 </div>
 {% endfor %}
 

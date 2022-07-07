@@ -1,10 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Add book</title>
-</head>
+{% extends 'bookstore/base.html' %}
+
+{% block content %}
+
 <body>
+<h1>Add book</h1>
 <div>
     <form action="{% url 'books_list' %}" method="post">
         {% csrf_token %}
@@ -16,4 +15,5 @@
 </div>
 
 </body>
-</html>
+
+{% endblock %}
