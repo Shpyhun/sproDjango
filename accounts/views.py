@@ -22,20 +22,10 @@ class RegisterUser(CreateView):
 
 class LoginUser(LoginView):
     form_class = LoginUserForm
-    success_url = reverse_lazy('books_list')
     template_name = 'accounts/login.html'
 
-
-
-# class LoginUser(LoginView):
-#     form_class = LoginUserForm
-#     success_url = reverse_lazy('books_list')
-#     template_name = 'accounts/login.html'
-#
-    # def form_valid(self, form):
-    #     user = form.get_user()
-    #     login(self.request, user)
-    #     return redirect('books_list')
+    def get_success_url(self):
+        return reverse_lazy('books_list')
 
 
 class LogoutUser(View):

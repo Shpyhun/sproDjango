@@ -27,7 +27,7 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('title', models.CharField(max_length=100)),
                 ('released_year', models.CharField(max_length=20)),
-                ('description', models.TextField(help_text='Enter a brief description of the book')),
+                ('description', models.TextField()),
                 ('paperback', models.CharField(max_length=50)),
                 ('time_create', models.DateTimeField(auto_now_add=True)),
                 ('time_update', models.DateTimeField(auto_now=True)),

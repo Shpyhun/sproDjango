@@ -11,6 +11,10 @@
     <p2>Print length: {{book.paperback}} pages</p2><br><br>
     <p3>Date add: {{book.time_update|date:"d-m-Y"}}</p3><br><br>
     <button><a href="{% url 'author' book.author_id %}">Books author</a></button> <button><a href="{% url 'books_list' %}">Books list</a></button>
+
+
 </div>
+{% include 'bookstore/review.html' %}
 </body>
 {% endblock %}
+

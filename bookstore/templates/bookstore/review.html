@@ -1,0 +1,26 @@
+{% block content %}
+
+
+<hr>
+<h1>Book review</h1>
+<div>
+    {% if user.is_active %}
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ rev_form.as_p }}
+        <input type="submit" value="Add review"/>
+    </form>
+    {% else %}
+    <h2>You need to sign, to leave a review</h2>
+    {% endif %}
+    <hr>
+
+    {% for rev in review %}
+    <p>Review: {{rev.text}}</p>
+    <p1>User: {{rev.user}} |</p1>
+    <p2>Date: {{rev.time_create|date:"d-m-Y"}}</p2><br><br>
+    {% endfor %}
+
+</div>
+
+{% endblock %}

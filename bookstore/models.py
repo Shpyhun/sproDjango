@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 
 # Create your models here.
@@ -155,10 +156,13 @@ class Author(models.Model):
         verbose_name_plural = 'Authors'
 
 
-class Member(models.Model):
-    nickname = models.CharField(max_length=100)
+class ReviewBook(models.Model):
+    """Book review model"""
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    book = models.ForeignKey(Books, on_delete=models.SET_NULL, null=True)
+    text = models.TextField(max_length=500)
+    time_create = models.DateTimeField(auto_now_add=True)
 
-    def __str__(self):
-        return f"pk = {self.pk} nickname = {self.title}"
-
-
+    class Meta:
+        verbose_name = 'Review'
+        verbose_name_plural = 'Reviews'

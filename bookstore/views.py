@@ -4,8 +4,8 @@ from django.shortcuts import render, get_object_or_404, get_list_or_404
 # Create your views here.
 from django.views import View
 
-from bookstore.forms import BooksForm
-from bookstore.models import Books, Author
+from bookstore.forms import BooksForm, ReviewForm
+from bookstore.models import Books, Author, ReviewBook
 
 menu = [{'title': "Book list", 'url_name': 'books_list'},
         {'title': "Add book", 'url_name': 'add_book'},
@@ -47,7 +47,17 @@ class BooksView(View):
 
 def books_detail(request, index):
     book = get_object_or_404(Books, pk=index)
-    context = {'book': book}
+    review = ReviewBook.objects.filter(book=book)
+    if request.method == 'POST':
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            rev = form.save(commit=False)
+            rev.user = request.user
+            rev.book = book
+            rev.save()
+    else:
+        form = ReviewForm()
+    context = {'book': book, 'review_form': ReviewForm, 'rev_form': form, 'review': review}
     return render(request, 'bookstore/books_detail.html', context=context)
 
 
