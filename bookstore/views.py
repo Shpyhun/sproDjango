@@ -31,20 +31,6 @@ class BooksView(View):
         return render(request, 'bookstore/books_list.html', context=context)
 
 
-# def books_list(request):
-#     books = Books.objects.all()
-#     if request.method == "GET" and 'qwerty' in request.GET:
-#         qwerty = request.GET['qwerty']
-#         books = books.filter(title__icontains=qwerty)
-#     if request.method == 'POST':
-#         form = BooksForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             books = Books.objects.all().order_by('-id')
-#     context = {'books': books, 'post_form': BooksForm}
-#     return render(request, 'bookstore/books_list.html', context=context)
-
-
 def books_detail(request, index):
     book = get_object_or_404(Books, pk=index)
     review = ReviewBook.objects.filter(book=book)
@@ -89,16 +75,6 @@ class AddBookView(View):
             books = books.filter(title__icontains=qwerty)
         context = {'books': books, 'post_form': BooksForm}
         return render(request, 'bookstore/add_book.html', context=context)
-
-# def add_book(request):
-#     books = Books.objects.all()
-#     if request.method == 'POST':
-#         form = BooksForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             books = Books.objects.all()
-#     context = {'books': books, 'post_form': BooksForm}
-#     return render(request, 'bookstore/add_book.html', context=context)
 
 
 def page_not_found(request, exception):
