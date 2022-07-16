@@ -2,7 +2,7 @@
 
 
 <hr>
-<h1>Book review</h1>
+<h1>Book reviews</h1>
 <div>
     {% if user.is_active %}
     <form action="" method="post">
@@ -15,10 +15,10 @@
     {% endif %}
     <hr>
 
-    {% for rev in review %}
-    <p>Review: {{rev.text}}</p>
-    <p1>User: {{rev.user}} |</p1>
-    <p2>Date: {{rev.time_create|date:"d-m-Y"}}</p2><br><br>
+    {% for review in reviews %}
+    <p>Review: {{review.text}}</p>
+    <p1>User: {{review.user}} |</p1>
+    <p2>Date: {{review.time_create|date:"d-m-Y"}}</p2><br><br>
     {% endfor %}
 
 </div>

@@ -9,7 +9,6 @@ from bookstore.models import Books, Author, ReviewBook
 
 menu = [{'title': "Book list", 'url_name': 'books_list'},
         {'title': "Add book", 'url_name': 'add_book'},
-
 ]
 
 
@@ -33,7 +32,7 @@ class BooksView(View):
 
 def books_detail(request, index):
     book = get_object_or_404(Books, pk=index)
-    review = ReviewBook.objects.filter(book=book)
+    reviews = ReviewBook.objects.filter(book=book)
     if request.method == 'POST':
         form = ReviewForm(request.POST)
         if form.is_valid():
@@ -43,7 +42,7 @@ def books_detail(request, index):
             rev.save()
     else:
         form = ReviewForm()
-    context = {'book': book, 'review_form': ReviewForm, 'rev_form': form, 'review': review}
+    context = {'book': book, 'rev_form': form, 'reviews': reviews}
     return render(request, 'bookstore/books_detail.html', context=context)
 
 

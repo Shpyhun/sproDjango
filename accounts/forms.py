@@ -5,7 +5,6 @@ from django.contrib.auth.models import User
 
 class RegisterUserForm(UserCreationForm):
     username = forms.CharField(label='Account', widget=forms.TextInput(attrs={'class': 'form-input'}))
-    # email = forms.EmailField(label='Email', widget=forms.EmailInput(attrs={'class': 'form-input'}))
     password1 = forms.CharField(label='Password', widget=forms.PasswordInput(attrs={'class': 'form-input'}))
     password2 = forms.CharField(label='Password (repeat)', widget=forms.PasswordInput(attrs={'class': 'form-input'}))
 
@@ -16,5 +15,4 @@ class RegisterUserForm(UserCreationForm):
 
 class LoginUserForm(AuthenticationForm):
     username = forms.CharField(label='Account', widget=forms.TextInput(attrs={'class': 'form-input'}))
-    # email = forms.EmailField(label='Email', widget=forms.EmailInput(attrs={'class': 'form-input'}))
     password = forms.CharField(label='Password', widget=forms.PasswordInput(attrs={'class': 'form-input'}))
